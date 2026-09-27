@@ -60,17 +60,37 @@ function moveSnake() {
 window.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
+
     const keyPressed = event.keyCode;
+
     const goingUp = dy === -1;
+
     const goingDown = dy === 1;
+
     const goingRight = dx === 1;
+
     const goingLeft = dx === -1;
 
-    if (keyPressed === 37 && !goingRight) { dx = -1; dy = 0; } // Left arrow
-    if (keyPressed === 38 && !goingDown) { dx = 0; dy = -1; }  // Up arrow
-    if (keyPressed === 39 && !goingLeft) { dx = 1; dy = 0; }   // Right arrow
-    if (keyPressed === 40 && !goingUp) { dx = 0; dy = 1; }     // Down arrow
+
+
+    if ([37, 38, 39, 40].includes(keyPressed)) {
+
+        event.preventDefault(); // stop page scroll from eating the input
+
+    }
+
+
+
+    if (keyPressed === 37 && !goingRight) { dx = -1; dy = 0; }
+
+    if (keyPressed === 38 && !goingDown)  { dx = 0; dy = -1; }
+
+    if (keyPressed === 39 && !goingLeft)  { dx = 1; dy = 0; }
+
+    if (keyPressed === 40 && !goingUp)    { dx = 0; dy = 1; }
+
 }
+
 
 // Handle food mechanics
 function drawFood() {
